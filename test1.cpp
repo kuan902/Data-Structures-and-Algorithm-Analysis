@@ -1,12 +1,19 @@
 #include <iostream>
 using namespace std;
 
-// 定义链表结点结构
+// 定义链表结点结构，C语言原生写法
 typedef struct LNode {
     int data;
     struct LNode *link;
 } LNode, *LinkList;
-
+/*
+    struct LNode
+    {
+        int data;
+        LNode *link;
+    }
+        using LinkList=LNode*; //表示LNode类型的指针，用LinkList可以直接定义指针；
+*/
 /**
  * @param list 带头结点的链表头指针
  * @param k 倒数第k个位置，k为正整数
@@ -17,12 +24,13 @@ int findLastK(LinkList list, int k)
     // k非法（非正数）直接返回0
     if (k <= 0)
         return 0;
-
-    LNode *fast = list;
+    
+    //快慢指针均指向头节点
+    LNode *fast = list;     
     LNode *slow = list;
 
     // 快指针先向前走k步
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < k; i++) 
     {
         fast = fast->link;
         // 如果走k步过程中fast为空，代表链表有效节点不足k个
@@ -66,6 +74,5 @@ int main()
     // 测试：查找倒数第2个，预期输出4，返回1
     int res = findLastK(L, 2);
     cout << "返回值：" << res << endl;
-  
     return 0;
 }
