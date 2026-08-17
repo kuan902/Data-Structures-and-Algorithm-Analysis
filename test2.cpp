@@ -1,10 +1,11 @@
 #include <iostream>
 using namespace std;
-
-typedef struct LNode {
+struct LNode
+{
     char data;
-    struct LNode* next;
-} LNode, *LinkList;
+    LNode* next;
+};
+using LinkList=LNode*;
 
 int getLength(LinkList L) {
     int len = 0;
@@ -38,8 +39,6 @@ LNode* findCommonSuffix(LinkList str1, LinkList str2) {
 }
 
 int main() {
-    // ========= 手动构造原题真正共享结点的链表 =========
-    // 公共后缀结点 i -> n -> g
     LNode* i_node = new LNode{'i', nullptr};
     LNode* n_node = new LNode{'n', nullptr};
     LNode* g_node = new LNode{'g', nullptr};
