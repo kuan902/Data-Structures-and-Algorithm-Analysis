@@ -4,17 +4,27 @@ const int MAXSIZE=100;
 using ElemType=int;
 struct Queue
 {
-    ElemType data[MAXSIZE];
+    ElemType data[MAXSIZE];     //ElemType *data;
     int front;
     int rear;
 };
 //初始化
 void initQueue(Queue *Q)
 {
-    Q->front=0;
-    Q->rear=0;
+    Q->front=0;     //队头 
+    Q->rear=0;      //队尾
     
 }
+/*动态内存分配
+Queue* initQueue()
+{
+    Queue *q=new Queue;
+    q->data=new ElemType[MAXSIZE];
+    q->front=0;
+    q->rear=0;
+    return q;
+}
+*/
 //判断队列是否为空
 int isEmpty(Queue *Q)
 {
@@ -88,7 +98,7 @@ int getHead(Queue *Q,ElemType *e)
 int main()
 {
     Queue q;
-    initQueue(&q);
+    initQueue(&q);      //若用动态，全部改为q
     equeue(&q,10);
     equeue(&q,20);
     equeue(&q,30);
